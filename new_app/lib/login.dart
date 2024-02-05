@@ -117,10 +117,11 @@ class _LoginPageState extends State<LoginPage> {
                   print('User Password: ${user?.password}');
                   if (user != null && user.password == password) {
                     // Authentication successful
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Example()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => Example()),
+                    // );
+                    Navigator.pushReplacementNamed(context, '/example');
                   } else {
                     // Authentication failed
                     setState(() {

@@ -74,3 +74,85 @@ class ExampleCard extends StatelessWidget {
     );
   }
 }
+
+// 
+
+
+
+
+class DetailsPage extends StatelessWidget {
+  final ExampleCandidateModel candidate;
+  
+
+  const DetailsPage({Key? key, required this.candidate}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      
+      body: 
+      
+      CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 400.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: candidate.color,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Additional Details:',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Name: ${candidate.name}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        'Job: ${candidate.job}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        'City: ${candidate.city}',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      // Add more details as needed
+                      SizedBox(height: 20),
+                      // Add more widgets for additional details
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
