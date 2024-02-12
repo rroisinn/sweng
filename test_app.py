@@ -10,8 +10,8 @@ def index():
     name_ = asos_df['Name'][0]
     brand_ = asos_df['Brand'][0]
     price_ = asos_df['Price'][0]
-    image = "https://" + asos_df['Image_URL'][0]
-    product_link = "https://asos.com/"+asos_df['Product_URL'][0]
+    image =  asos_df['Image_URL'][0]
+    product_link = asos_df['Product_URL'][0]
     first_product = {
         'name': name_,
         'brand': brand_,
