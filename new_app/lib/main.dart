@@ -112,6 +112,7 @@ class _ExamplePageState extends State<Example> {
             image: item['image'],
             link: item['link'],
             price: item['price'],
+            brand: item['brand'],
           );
         }).toList();
 
@@ -152,7 +153,9 @@ class _ExamplePageState extends State<Example> {
           ),
         ],
       ),
+      
       body: SafeArea(
+        // minimum: const EdgeInsets.only(top: -50), // Adjust the top padding here
         child: FutureBuilder<List<ExampleCandidateModel>>(
           future: futureCandidates,
           builder: (context, snapshot) {
@@ -182,7 +185,7 @@ class _ExamplePageState extends State<Example> {
             onUndo: _onUndo,
             numberOfCardsDisplayed: 3,
             backCardOffset: const Offset(40, 40),
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(15.0),
             cardBuilder: (
               context,
               index,

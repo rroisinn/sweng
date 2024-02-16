@@ -49,14 +49,15 @@ class ExampleCard extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                Colors.pink.withOpacity(0.8)
+                Colors.pink.withOpacity(0.7)
               ],
-              // stops: const [-0.3, 0.8],
+              stops: const [-0.1, 0.5],
             ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 30),
               Text(
                 candidate.name,
                 style: const TextStyle(
@@ -65,9 +66,37 @@ class ExampleCard extends StatelessWidget {
                   color: Colors.white, // Fill color
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
+               // Add vertical padding
+               Row(
+                children: [
+                  const Icon(
+                    Icons.sell,
+                    color: Colors.white,
+                    size: 18, // Adjust size as needed
+                  ),
+                  const SizedBox(width: 5), // Add some spacing between the icon and text
+                  Text(
+                    candidate.brand,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+              
+              // const SizedBox(height: 0.5),
+              // Padding(
+              // padding: const EdgeInsets.symmetric(vertical: 0.5), // Add vertical padding
               Row(
                 children: [
+                  const Icon(
+                    Icons.paid,
+                    color: Colors.white,
+                    size: 18, // Adjust size as needed
+                  ),
+                  const SizedBox(width: 5),
                   Text(
                     candidate.price,
                     style: const TextStyle(
@@ -93,6 +122,7 @@ class ExampleCard extends StatelessWidget {
                   ),
                 ],
               ),
+              
             ],
           ),
         ),
@@ -180,12 +210,43 @@ class DetailsPage extends StatelessWidget {
                     SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Text(
-                        candidate.price,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.sell,
+                            color: Colors.white,
+                            size: 18, // Adjust size as needed
+                          ),
+                          const SizedBox(width: 5), // Add some spacing between the icon and text
+                          Text(
+                            candidate.brand,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.paid,
+                            color: Colors.white,
+                            size: 18, // Adjust size as needed
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            candidate.price,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 5),

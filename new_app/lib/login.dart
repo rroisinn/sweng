@@ -133,14 +133,17 @@ class _LoginPageState extends State<LoginPage> {
                           // setState(() {});
                   }
                           },
-                            color: Colors.greenAccent,
+                            color: Color.fromARGB(255, 241, 85, 137),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50)),
-                            child: Text(
+                            child: const Text(
                               "Login",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 18),
+                                  fontWeight: FontWeight.w600,
+                                   fontSize: 18,
+                                   color: Colors.white
+                                   ),
                             ),
                           ),
                         ),

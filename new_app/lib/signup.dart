@@ -114,14 +114,15 @@ class _SignupPageState extends State<SignupPage> {
                         MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
-                  color: Colors.greenAccent,
+                  color: Color.fromARGB(255, 241, 85, 137),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)
                   ),
-                  child: Text("Sign up", style: TextStyle(
+                  child: const Text("Sign up", style: TextStyle(
                     fontWeight: FontWeight.w600, 
-                    fontSize: 18
+                    fontSize: 18,
+                    color: Colors.white
                   ),),
                 ),
               )),
