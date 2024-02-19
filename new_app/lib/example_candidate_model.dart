@@ -17,6 +17,16 @@ class ExampleCandidateModel {
     required this.price,
     required this.brand,
   });
+  // Define a toMap method to convert the model object to a map
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'image': image,
+      'link': link,
+      'price': price,
+      'brand': brand,
+    };
+  }
 }
 
 // final List<ExampleCandidateModel> candidates = [

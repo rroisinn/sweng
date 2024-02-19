@@ -25,7 +25,9 @@ void main() async {
   );
 }
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   final User? user;
+
+  const MyApp({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +36,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',  // Set initial route to login
       routes: {
         '/login': (context) => LoginPage(),
-        '/example': (context) => const Example(),
-        '/wishlist': (context) => WishlistScreen(),
+        '/example': (context) => Example(user: user),
+        '/wishlist': (context) => WishlistScreen(user: user),
       },
     );
   }
@@ -49,9 +51,13 @@ Future<void> initDatabase() async {
 
 
 class Example extends StatefulWidget {
-  const Example({Key? key}) : super(key: key);
+  // const Example({Key? key}) : super(key: key);
+  final User? user;
+  const Example({Key? key, this.user}) : super(key: key);
 
   static const String routeName = '/example';
+
+  
 
   @override
   State<Example> createState() => _ExamplePageState();
@@ -64,7 +70,7 @@ class _ExamplePageState extends State<Example> {
 
   late Future<List<ExampleCandidateModel>> futureCandidates;
   late List<ExampleCandidateModel> candidates; // Define candidates here
-
+  
   @override
   void initState() {
     super.initState();
@@ -73,17 +79,6 @@ class _ExamplePageState extends State<Example> {
     // loadData();
   }
 
-  // Future<void> loadData() async {
-  //   while (true) {
-  //     futureCandidates = fetchData();
-  //     candidates = await futureCandidates;
-  //     if (candidates.isNotEmpty) {
-  //       break;
-  //     }
-  //     await Future.delayed(const Duration(seconds: 1)); // Adjust delay as needed
-  //   }
-  //   setState(() {}); 
-  // }
 
     @override
   void dispose() {
@@ -177,6 +172,8 @@ class _ExamplePageState extends State<Example> {
 
   @override
   Widget build(BuildContext context) {
+    final User? user1 = ModalRoute.of(context)?.settings.arguments as User?;
+    
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -200,11 +197,24 @@ class _ExamplePageState extends State<Example> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.favorite_border),
-            onPressed: () {
-            Navigator.pushNamed(context, '/wishlist');
-            }
-            ,)
+  icon: Icon(Icons.favorite_border),
+  onPressed: () {
+    // debugPrint("User object before navigating: ${widget.user}");
+    // debugPrint("User object2 before navigating: $user1");
+    if (user1 != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WishlistScreen(user: user1!), // Pass the user object
+        ),
+      );
+    } else {
+      // Handle the case where user is null
+      // For example, show a snackbar or display an error message
+      debugPrint('User not found!');
+    }
+  },
+          )
         ],
         // title: Image.asset(
         //   'assets/logo.png', // Path to your logo image
@@ -307,6 +317,7 @@ class _ExamplePageState extends State<Example> {
     debugPrint(
       'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
     );
+    final User? user1 = ModalRoute.of(context)?.settings.arguments as User?;
 
     // debugPrint('Length of candidates list: ${candidates.length}');
 
@@ -318,11 +329,25 @@ class _ExamplePageState extends State<Example> {
     else if (direction == CardSwiperDirection.left) {
     controller.swipeLeft(); // Handle left swipe
   } else if (direction == CardSwiperDirection.right) {
+    // Add the swiped card to the wishlist
+    // print(user1);
+    addToWishlist(candidates[previousIndex!], user1);
     controller.swipeRight(); // Handle right swipe
   }
     return true;
 
   }
+  void addToWishlist(ExampleCandidateModel candidate, User? user) async {
+  // Obtain the user ID from the database or any other source
+  // User? user = await DatabaseHelper().getUser(user1!.username); // Replace currentUser with the actual variable holding the current user's username
+  
+  if (user != null) {
+    // Pass the obtained user ID along with the candidate when adding to the wishlist
+    DatabaseHelper().insertWishlistItem(user.id, candidate);
+  } else {
+    print('User not found!');
+  }
+}
 
   bool _onUndo(
     int? previousIndex,
