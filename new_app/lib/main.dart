@@ -68,7 +68,20 @@ class _ExamplePageState extends State<Example> {
     super.initState();
     futureCandidates = fetchData();
     candidates = [];
+    // loadData();
   }
+
+  // Future<void> loadData() async {
+  //   while (true) {
+  //     futureCandidates = fetchData();
+  //     candidates = await futureCandidates;
+  //     if (candidates.isNotEmpty) {
+  //       break;
+  //     }
+  //     await Future.delayed(const Duration(seconds: 1)); // Adjust delay as needed
+  //   }
+  //   setState(() {}); 
+  // }
 
     @override
   void dispose() {
@@ -127,6 +140,39 @@ class _ExamplePageState extends State<Example> {
     }
   }
 
+//   Future<List<ExampleCandidateModel>> fetchData() async {
+//   const maxRetries = 3;
+//   int retryCount = 0;
+//   while (retryCount < maxRetries) {
+//     try {
+//       final response = await http.get(Uri.parse('https://sweng1.pythonanywhere.com'));
+//       print('Response status: ${response.statusCode}');
+//       if (response.statusCode == 200) {
+//         final List<dynamic> jsonData = jsonDecode(response.body);
+//         final List<ExampleCandidateModel> parsedCandidates = jsonData.map((item) {
+//           return ExampleCandidateModel(
+//             name: item['name'],
+//             image: item['image'],
+//             link: item['link'],
+//             price: item['price'],
+//             brand: item['brand'],
+//           );
+//         }).toList();
+//         return parsedCandidates;
+//       } else {
+//         throw Exception('Failed to load data: ${response.statusCode}');
+//       }
+//     } catch (e, stackTrace) {
+//         print('Error fetching data: $e');
+//         print('Stack trace: $stackTrace');
+//         retryCount++;
+//         await Future.delayed(const Duration(seconds: 2)); // Retry after 2 seconds// Retry after 2 seconds
+//     }
+//   }
+//   return []; // Return an empty list if retries exceed the maximum limit
+// }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,6 +198,13 @@ class _ExamplePageState extends State<Example> {
             },
           ),
         ],
+        // title: Image.asset(
+        //   'assets/logo.png', // Path to your logo image
+        //   width: 100, // Adjust the width as needed
+        //   height: 100, // Adjust the height as needed
+        //   fit: BoxFit.contain, // Ensure the logo fits within the app bar
+        // ),
+        // centerTitle: true, // Center the logo horizontally
       ),
       
       body: SafeArea(
@@ -159,20 +212,20 @@ class _ExamplePageState extends State<Example> {
         child: FutureBuilder<List<ExampleCandidateModel>>(
           future: futureCandidates,
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting ) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
-              candidates = snapshot.data ?? []; // Update candidates list here
+              candidates = snapshot.data ?? [];
               return _buildCardSwiper(candidates);
-            }
-          },
-          
-        ),
+              
+          }
+        },
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget _buildCardSwiper(List<ExampleCandidateModel> candidates) {
     return Column(
