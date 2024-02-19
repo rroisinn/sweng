@@ -4,6 +4,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:new_app/example_candidate_model.dart';
 import 'package:new_app/example_card.dart';
 import 'package:new_app/login.dart';
+import 'package:new_app/wishlist_screen.dart';
 import 'package:new_app/database_helper.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/example': (context) => const Example(),
+        '/wishlist': (context) => WishlistScreen(),
       },
     );
   }
@@ -197,6 +199,12 @@ class _ExamplePageState extends State<Example> {
               _shareContent();
             },
           ),
+          IconButton(
+            icon: Icon(Icons.favorite_border),
+            onPressed: () {
+            Navigator.pushNamed(context, '/wishlist');
+            }
+            ,)
         ],
         // title: Image.asset(
         //   'assets/logo.png', // Path to your logo image
