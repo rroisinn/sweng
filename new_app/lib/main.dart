@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:new_app/example_candidate_model.dart';
 import 'package:new_app/example_card.dart';
+import 'package:new_app/account_page.dart';
 import 'package:new_app/login.dart';
 import 'package:new_app/wishlist_screen.dart';
 import 'package:new_app/database_helper.dart';
 import 'package:share/share.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/example': (context) => Example(user: user),
         '/wishlist': (context) => WishlistScreen(user: user),
+        '/account': (context) => AccountPage(),
       },
     );
   }
@@ -176,54 +179,74 @@ class _ExamplePageState extends State<Example> {
     
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
-        ),
-        actions: [
-          // Add an IconButton for sharing
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: () {
-              _shareContent();
-            },
-          ),
-          IconButton(
-  icon: Icon(Icons.favorite_border),
-  onPressed: () {
-    // debugPrint("User object before navigating: ${widget.user}");
-    // debugPrint("User object2 before navigating: $user1");
-    if (user1 != null) {
+  elevation: 0,
+  backgroundColor: Colors.transparent,
+  leading: IconButton(
+    onPressed: () {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => WishlistScreen(user: user1!), // Pass the user object
-        ),
+        MaterialPageRoute(builder: (context) => Example()),
       );
-    } else {
-      // Handle the case where user is null
-      // For example, show a snackbar or display an error message
-      debugPrint('User not found!');
-    }
-  },
-          )
-        ],
-        // title: Image.asset(
-        //   'assets/logo.png', // Path to your logo image
-        //   width: 100, // Adjust the width as needed
-        //   height: 100, // Adjust the height as needed
-        //   fit: BoxFit.contain, // Ensure the logo fits within the app bar
-        // ),
-        // centerTitle: true, // Center the logo horizontally
+    },
+    icon: const Icon(
+      Icons.arrow_back_ios,
+      size: 20,
+      color: Colors.black,
+    ),
+  ),
+  titleSpacing: 0, // Minimizes the default spacing
+  title: Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+      SizedBox(width: 48), // Adjust this width to ensure "sweng" text is well-positioned; 48 is an example assuming the back button takes similar space.
+      Text(
+        'sweng',
+        style: TextStyle(
+          fontSize: 20, // Example font size
+          fontWeight: FontWeight.bold, // Example font weight
+          color: Colors.black, // Font color
+          // Further customization of the font can be done here
+        ),
       ),
+    ],
+  ),
+  actions: <Widget>[
+    // IconButton for sharing
+    IconButton(
+      icon: Icon(Icons.share),
+      onPressed: () {
+        _shareContent();
+      },
+    ),
+    // IconButton for wishlist
+    IconButton(
+      icon: Icon(Icons.favorite_border),
+      onPressed: () {
+        if (user1 != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WishlistScreen(user: user1!), // Pass the user object
+            ),
+          );
+        } else {
+          debugPrint('User not found!');
+        }
+      },
+    ),
+    // IconButton for account
+    IconButton(
+      icon: Icon(Icons.account_circle),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AccountPage()),
+        );
+      },
+    ),
+  ],
+),
+
       
       body: SafeArea(
         // minimum: const EdgeInsets.only(top: -50), // Adjust the top padding here
