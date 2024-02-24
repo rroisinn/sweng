@@ -65,4 +65,5 @@ def webscraping():
         asos_df_ = pd.DataFrame({'Name': name, 'Brand': brand, 'Price': price, 'Image_URL': image_url, 'Product_URL': product_url})
         return asos_df_
     
-    webscraping()
+    asos_data = webscraping()
+    asos_data.to_csv('data.csv') #put the data in a file
