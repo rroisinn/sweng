@@ -147,10 +147,10 @@ Future<void> _launchURL(String url) async {
 
 class DetailsPage extends StatelessWidget {
   final ExampleCandidateModel candidate;
-  final CardSwiperController controller;
+  final CardSwiperController? controller;
   // final CardSwiperController controller = CardSwiperController();
 
-  const DetailsPage({Key? key, required this.candidate, required this.controller}) : super(key: key);
+  const DetailsPage({Key? key, required this.candidate, this.controller}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -269,12 +269,13 @@ class DetailsPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
+                    if (controller != null)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         FloatingActionButton(
                           heroTag: 'uniqueTag1',
-                          onPressed:(){controller.swipeLeft(); Navigator.pop(context);},
+                          onPressed:(){controller!.swipeLeft(); Navigator.pop(context);},
                           child: Icon(Icons.close),
                           backgroundColor: Color.fromARGB(255, 241, 85, 137),
                           foregroundColor: Colors.white,
@@ -282,7 +283,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           heroTag: 'uniqueTag2',
-                          onPressed:(){controller.undo(); Navigator.pop(context);
+                          onPressed:(){controller!.undo(); Navigator.pop(context);
                           },
                           child: Icon(Icons.rotate_left),
                           backgroundColor: Color.fromARGB(255, 241, 85, 137),
@@ -291,7 +292,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           heroTag: 'uniqueTag3',
-                          onPressed: (){controller.swipeRight(); Navigator.pop(context);},
+                          onPressed: (){controller!.swipeRight(); Navigator.pop(context);},
                           child: Icon(Icons.done),
                           backgroundColor: Color.fromARGB(255, 241, 85, 137),
                           foregroundColor: Colors.white,

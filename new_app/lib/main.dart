@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:new_app/example_candidate_model.dart';
 import 'package:new_app/example_card.dart';
 import 'package:new_app/account_page.dart';
@@ -21,6 +22,9 @@ void main() async {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
+  //     theme: ThemeData(
+  //     textTheme: GoogleFonts.antonTextTheme(),
+  // ),
       // home: Example(),
       home: MyApp(),
     ),
@@ -140,37 +144,7 @@ class _ExamplePageState extends State<Example> {
     }
   }
 
-//   Future<List<ExampleCandidateModel>> fetchData() async {
-//   const maxRetries = 3;
-//   int retryCount = 0;
-//   while (retryCount < maxRetries) {
-//     try {
-//       final response = await http.get(Uri.parse('https://sweng1.pythonanywhere.com'));
-//       print('Response status: ${response.statusCode}');
-//       if (response.statusCode == 200) {
-//         final List<dynamic> jsonData = jsonDecode(response.body);
-//         final List<ExampleCandidateModel> parsedCandidates = jsonData.map((item) {
-//           return ExampleCandidateModel(
-//             name: item['name'],
-//             image: item['image'],
-//             link: item['link'],
-//             price: item['price'],
-//             brand: item['brand'],
-//           );
-//         }).toList();
-//         return parsedCandidates;
-//       } else {
-//         throw Exception('Failed to load data: ${response.statusCode}');
-//       }
-//     } catch (e, stackTrace) {
-//         print('Error fetching data: $e');
-//         print('Stack trace: $stackTrace');
-//         retryCount++;
-//         await Future.delayed(const Duration(seconds: 2)); // Retry after 2 seconds// Retry after 2 seconds
-//     }
-//   }
-//   return []; // Return an empty list if retries exceed the maximum limit
-// }
+
 
 
   @override
@@ -195,21 +169,13 @@ class _ExamplePageState extends State<Example> {
     ),
   ),
   titleSpacing: 0, // Minimizes the default spacing
-  title: Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: <Widget>[
-      SizedBox(width: 48), // Adjust this width to ensure "sweng" text is well-positioned; 48 is an example assuming the back button takes similar space.
-      Text(
-        'sweng',
-        style: TextStyle(
-          fontSize: 20, // Example font size
-          fontWeight: FontWeight.bold, // Example font weight
-          color: Colors.black, // Font color
-          // Further customization of the font can be done here
+  title: Image.asset(
+          'assets/logo.png', // Path to your logo image
+          width: 100, // Adjust the width as needed
+          height: 100, // Adjust the height as needed
+          fit: BoxFit.contain, // Ensure the logo fits within the app bar
         ),
-      ),
-    ],
-  ),
+        // centerTitle: true, // Center the logo horizontally
   actions: <Widget>[
     // IconButton for sharing
     IconButton(
@@ -326,40 +292,55 @@ class _ExamplePageState extends State<Example> {
   }
 
 
- 
+
+
+  int swipeCount = 0;
 
   bool _onSwipe(
-    int previousIndex,
-    int? currentIndex,
-    CardSwiperDirection direction,
-  ) {
-    setState(() {
-    this.currentIndex = currentIndex ?? previousIndex;
-    });
+  int previousIndex,
+  int? currentIndex,
+  CardSwiperDirection direction,
+) {
+  debugPrint(
+    'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
+  );
 
-    debugPrint(
-      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
-    );
-    final User? user1 = ModalRoute.of(context)?.settings.arguments as User?;
+  final User? user1 = ModalRoute.of(context)?.settings.arguments as User?;
 
-    // debugPrint('Length of candidates list: ${candidates.length}');
-
-    if (direction == CardSwiperDirection.top) {
-      // Navigate to the details page when swiped to the top
-      _navigateToDetailsPage(candidates[previousIndex!]);
-      return false;
-    }
-    else if (direction == CardSwiperDirection.left) {
+  if (direction == CardSwiperDirection.top) {
+    // Navigate to the details page when swiped to the top
+    _navigateToDetailsPage(candidates[previousIndex!]);
+    return false;
+  } else if (direction == CardSwiperDirection.left) {
+    fetchAndAddRandom();
     controller.swipeLeft(); // Handle left swipe
   } else if (direction == CardSwiperDirection.right) {
-    // Add the swiped card to the wishlist
-    // print(user1);
+    fetchAndAddRecommendation(candidates[previousIndex!]);
     addToWishlist(candidates[previousIndex!], user1);
     controller.swipeRight(); // Handle right swipe
   }
-    return true;
 
-  }
+  // Update currentIndex and previousIndex
+  // if (currentIndex != null && currentIndex > 0) {
+  //   currentIndex -= 1;
+  // }
+  // if (previousIndex > 0) {
+  //   previousIndex -= 1;
+  // }
+
+  // // Remove the swiped card from the list after updating the UI
+  // setState(() {
+  //   candidates.removeAt(previousIndex);
+  // });
+
+  debugPrint('New currentIndex: $currentIndex');
+  debugPrint('Candidates length: ${candidates.length}');
+
+  return true;
+}
+
+
+
   void addToWishlist(ExampleCandidateModel candidate, User? user) async {
   // Obtain the user ID from the database or any other source
   // User? user = await DatabaseHelper().getUser(user1!.username); // Replace currentUser with the actual variable holding the current user's username
@@ -370,6 +351,7 @@ class _ExamplePageState extends State<Example> {
   } else {
     print('User not found!');
   }
+
 }
 
   bool _onUndo(
@@ -382,6 +364,76 @@ class _ExamplePageState extends State<Example> {
     );
     return true;
   }
+  
+  void fetchAndAddRecommendation(ExampleCandidateModel candidate) async{
+    
+  try {
+    // Construct URL for recommendation
+    String recommendationUrl = 'https://sweng1.pythonanywhere.com/recommend/${candidate.name}';
+    // Fetch recommendation from the URL
+    final response = await http.get(Uri.parse(recommendationUrl));
+    if (response.statusCode == 200) {
+      // Parse the JSON data
+      final Map<String, dynamic> jsonData = jsonDecode(response.body);
+      // Create an ExampleCandidateModel instance from the recommendation data
+      ExampleCandidateModel recommendation = ExampleCandidateModel(
+        name: jsonData['name'],
+        image: jsonData['image'],
+        link: jsonData['link'],
+        price: jsonData['price'],
+        brand: jsonData['brand'],
+      );
+      // Add the recommendation to the list of cards
+      if (!candidates.contains(recommendation)) {
+          // Add the recommendation to the list of cards
+          setState(() {
+            candidates.add(recommendation);
+          });
+        }
+    } else {
+      throw Exception('Failed to load recommendation: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error fetching recommendation: $e');
+    // Handle the error gracefully, e.g., show a friendly error message to the user
+  }
+
+  }
+  void fetchAndAddRandom() async {
+  try {
+    // Construct URL for recommendation with query parameter for number of items
+    String randomUrl = 'https://sweng1.pythonanywhere.com/random';
+    // Fetch recommendation from the URL
+    final response = await http.get(Uri.parse(randomUrl));
+    if (response.statusCode == 200) {
+      // Parse the JSON data
+      final List<dynamic> jsonDataList = jsonDecode(response.body);
+      // Iterate over the JSON data list and create ExampleCandidateModel instances
+      for (var jsonData in jsonDataList) {
+        ExampleCandidateModel random = ExampleCandidateModel(
+          name: jsonData['name'],
+          image: jsonData['image'],
+          link: jsonData['link'],
+          price: jsonData['price'],
+          brand: jsonData['brand'],
+        );
+        if (!candidates.contains(random)) {
+        // Add the recommendation to the list of cards
+        setState(() {
+          candidates.add(random);
+        });
+      }
+      }
+    }else {
+      throw Exception('Failed to load random items: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error fetching recommendation: $e');
+    // Handle the error gracefully, e.g., show a friendly error message to the user
+  }
+}
+
+
 }
 
 
