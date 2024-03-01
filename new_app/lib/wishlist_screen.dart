@@ -3,7 +3,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/database_helper.dart';
 import 'package:new_app/example_candidate_model.dart'; 
-import 'package:google_fonts/google_fonts.dart';
 import 'package:new_app/account_page.dart';
 
 class WishlistScreen extends StatefulWidget {
@@ -11,12 +10,15 @@ class WishlistScreen extends StatefulWidget {
 
   const WishlistScreen({Key? key, required this.user}) : super(key: key);
 
+  
+
   @override
   _WishlistScreenState createState() => _WishlistScreenState();
 }
 
 class _WishlistScreenState extends State<WishlistScreen> {
   late List<ExampleCandidateModel> wishlistItems = [];
+  
 
   @override
   void initState() {
@@ -36,8 +38,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user1 = widget.user;
     return Scaffold(
       appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -61,11 +66,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 ),
                 
                 IconButton(
-                  icon: Icon(Icons.account_circle),
+                  icon: const Icon(Icons.account_circle),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AccountPage()),
+                      MaterialPageRoute(builder: (context) => AccountPage(user: user1)),
                     );
                   },
                 ),
@@ -74,7 +79,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
           ),
       body: Center(
         child: wishlistItems.isEmpty
-            ? Text('Your wishlist is currently empty.')
+            ? const Text('Your wishlist is currently empty.')
             : ListView.builder(
                 itemCount: wishlistItems.length,
                 itemBuilder: (context, index) {
@@ -92,7 +97,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                         color: Colors.pink.withOpacity(0.2),
                         spreadRadius: 3,
                         blurRadius: 7,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                     ),
@@ -138,9 +143,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
           children: [
             Text(
               candidate.name,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             // Text(candidate.brand),
             Row(
                 children: [

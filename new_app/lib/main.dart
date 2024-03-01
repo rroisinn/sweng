@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:new_app/example_candidate_model.dart';
 import 'package:new_app/example_card.dart';
 import 'package:new_app/account_page.dart';
@@ -22,10 +21,6 @@ void main() async {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-  //     theme: ThemeData(
-  //     textTheme: GoogleFonts.antonTextTheme(),
-  // ),
-      // home: Example(),
       home: MyApp(),
     ),
   );
@@ -41,10 +36,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/login',  // Set initial route to login
       routes: {
-        '/login': (context) => LoginPage(),
+        '/login': (context) => const LoginPage(),
         '/example': (context) => Example(user: user),
         '/wishlist': (context) => WishlistScreen(user: user),
-        '/account': (context) => AccountPage(),
+        '/account': (context) => AccountPage(user: user),
       },
     );
   }
@@ -73,7 +68,7 @@ class Example extends StatefulWidget {
 class _ExamplePageState extends State<Example> {
   final CardSwiperController controller = CardSwiperController();
   int currentIndex = 0;
-  // List<ExampleCandidateModel> candidates = [];
+  
 
   late Future<List<ExampleCandidateModel>> futureCandidates;
   late List<ExampleCandidateModel> candidates; // Define candidates here
@@ -83,7 +78,7 @@ class _ExamplePageState extends State<Example> {
     super.initState();
     futureCandidates = fetchData();
     candidates = [];
-    // loadData();
+    
   }
 
 
@@ -107,42 +102,80 @@ class _ExamplePageState extends State<Example> {
   // Get the candidate at the specified index
   ExampleCandidateModel candidate = candidates[currentIndex];
   
+  debugPrint('currentIndex: $currentIndex');
   // Generate a unique URL for the card
-  String cardUrl = 'https://yourdomain.com/card?name=${candidate.name}';
+  String cardUrl = candidate.link;
   
   // Share the URL
-  Share.share('Check out this candidate:\n$cardUrl');
+  Share.share('Check out this item I found on SWENG!: \n$cardUrl');
 }
 
-  Future<List<ExampleCandidateModel>> fetchData() async {
-    try {
-      // Fetch JSON data from the URL
-      final response = await http.get(Uri.parse('https://sweng1.pythonanywhere.com'));
-      if (response.statusCode == 200) {
-        // Parse the JSON data
-        final List<dynamic> jsonData = jsonDecode(response.body);
+Future <Preference?> getUserPreferences() async {
+  try {
+    final DatabaseHelper databaseHelper = DatabaseHelper();
+    final User? user1 = ModalRoute.of(context)?.settings.arguments as User?;
 
-        // Create a list of ExampleCandidateModel instances
-        final List<ExampleCandidateModel> parsedCandidates = jsonData.map((item) {
-          return ExampleCandidateModel(
-            name: item['name'],
-            image: item['image'],
-            link: item['link'],
-            price: item['price'],
-            brand: item['brand'],
-          );
-        }).toList();
-
-        return parsedCandidates;
-      } else {
-        throw Exception('Failed to load data: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching data: $e');
-      // Handle the error gracefully, e.g., show a friendly error message to the user
-      return []; // Return an empty list if an error occurs
-    }
+    return await databaseHelper.getPref(user1!.username);
+    
+  } catch (e) {
+    debugPrint('Error getting user preferences: $e');
+    // Handle the error gracefully
   }
+}
+
+
+Future<List<ExampleCandidateModel>> fetchData() async {
+  try {
+    // Fetch JSON data from the URL
+    final response = await http.get(Uri.parse('https://sweng1.pythonanywhere.com'));
+    if (response.statusCode == 200) {
+      // Parse the JSON data
+      final List<dynamic> jsonData = jsonDecode(response.body);
+
+      // Create a list of ExampleCandidateModel instances
+      final List<ExampleCandidateModel> parsedCandidates = jsonData.map((item) {
+        return ExampleCandidateModel(
+          name: item['name'],
+          image: item['image'],
+          link: item['link'],
+          price: item['price'],
+          brand: item['brand'],
+        );
+      }).toList();
+      
+      // Retrieve user preferences
+      Preference? pref = await getUserPreferences();
+      
+      // Filter candidates based on user preferences
+      final filteredCandidates = parsedCandidates.where((candidate) =>
+          candidate.name.toLowerCase().contains(pref!.preference1.toLowerCase()) ||
+          candidate.name.toLowerCase().contains(pref.preference2.toLowerCase()) ||
+          candidate.name.toLowerCase().contains(pref.preference3.toLowerCase()) ||
+          candidate.name.toLowerCase().contains(pref.preference4.toLowerCase())
+      ).toList();
+
+      // Insert filtered candidates to the start of the list
+      candidates.insertAll(0, filteredCandidates);
+
+      // Check if the list size is at least 10
+      if (candidates.length < 5) {
+        // Fill the remaining slots with additional candidates fetched from the API
+        final remainingCandidates = parsedCandidates.where((candidate) => !filteredCandidates.contains(candidate)).toList();
+        candidates.addAll(remainingCandidates.take(10 - candidates.length));
+      }
+
+      return candidates;
+    } else {
+      throw Exception('Failed to load data: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error fetching data: $e');
+    // Handle the error gracefully, e.g., show a friendly error message to the user
+    return []; // Return an empty list if an error occurs
+  }
+}
+
+
 
 
 
@@ -155,20 +188,8 @@ class _ExamplePageState extends State<Example> {
       appBar: AppBar(
   elevation: 0,
   backgroundColor: Colors.transparent,
-  leading: IconButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Example()),
-      );
-    },
-    icon: const Icon(
-      Icons.arrow_back_ios,
-      size: 20,
-      color: Colors.black,
-    ),
-  ),
-  titleSpacing: 0, // Minimizes the default spacing
+  automaticallyImplyLeading: false,
+  
   title: Image.asset(
           'assets/logo.png', // Path to your logo image
           width: 100, // Adjust the width as needed
@@ -179,14 +200,14 @@ class _ExamplePageState extends State<Example> {
   actions: <Widget>[
     // IconButton for sharing
     IconButton(
-      icon: Icon(Icons.share),
+      icon: const Icon(Icons.share),
       onPressed: () {
         _shareContent();
       },
     ),
     // IconButton for wishlist
     IconButton(
-      icon: Icon(Icons.favorite_border),
+      icon: const Icon(Icons.favorite_border),
       onPressed: () {
         if (user1 != null) {
           Navigator.push(
@@ -202,11 +223,11 @@ class _ExamplePageState extends State<Example> {
     ),
     // IconButton for account
     IconButton(
-      icon: Icon(Icons.account_circle),
+      icon: const Icon(Icons.account_circle),
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AccountPage()),
+          MaterialPageRoute(builder: (context) => AccountPage(user:user1)),
         );
       },
     ),
@@ -215,12 +236,12 @@ class _ExamplePageState extends State<Example> {
 
       
       body: SafeArea(
-        // minimum: const EdgeInsets.only(top: -50), // Adjust the top padding here
+        
         child: FutureBuilder<List<ExampleCandidateModel>>(
           future: futureCandidates,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting ) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else {
@@ -272,7 +293,7 @@ class _ExamplePageState extends State<Example> {
                 heroTag: 'uniqueTag2',
                 onPressed: controller.undo,
                 child: const Icon(Icons.rotate_left),
-                backgroundColor: Color.fromARGB(255, 241, 85, 137),
+                backgroundColor: const Color.fromARGB(255, 241, 85, 137),
                 foregroundColor: Colors.white,
                 shape: const CircleBorder(),
               ),
@@ -280,7 +301,7 @@ class _ExamplePageState extends State<Example> {
                 heroTag: 'uniqueTag3',
                 onPressed: controller.swipeRight,
                 child: const Icon(Icons.favorite),
-                backgroundColor: Color.fromARGB(255, 241, 85, 137),
+                backgroundColor: const Color.fromARGB(255, 241, 85, 137),
                 foregroundColor: Colors.white,
                 shape: const CircleBorder(),
               ),
@@ -314,24 +335,17 @@ class _ExamplePageState extends State<Example> {
   } else if (direction == CardSwiperDirection.left) {
     fetchAndAddRandom();
     controller.swipeLeft(); // Handle left swipe
+    if (currentIndex != null) {
+      this.currentIndex = currentIndex;
+    }
   } else if (direction == CardSwiperDirection.right) {
     fetchAndAddRecommendation(candidates[previousIndex!]);
     addToWishlist(candidates[previousIndex!], user1);
     controller.swipeRight(); // Handle right swipe
+    if (currentIndex != null) {
+      this.currentIndex = currentIndex;
+    }
   }
-
-  // Update currentIndex and previousIndex
-  // if (currentIndex != null && currentIndex > 0) {
-  //   currentIndex -= 1;
-  // }
-  // if (previousIndex > 0) {
-  //   previousIndex -= 1;
-  // }
-
-  // // Remove the swiped card from the list after updating the UI
-  // setState(() {
-  //   candidates.removeAt(previousIndex);
-  // });
 
   debugPrint('New currentIndex: $currentIndex');
   debugPrint('Candidates length: ${candidates.length}');
@@ -343,16 +357,28 @@ class _ExamplePageState extends State<Example> {
 
   void addToWishlist(ExampleCandidateModel candidate, User? user) async {
   // Obtain the user ID from the database or any other source
-  // User? user = await DatabaseHelper().getUser(user1!.username); // Replace currentUser with the actual variable holding the current user's username
-  
   if (user != null) {
-    // Pass the obtained user ID along with the candidate when adding to the wishlist
-    DatabaseHelper().insertWishlistItem(user.id, candidate);
-  } else {
-    print('User not found!');
-  }
+    final DatabaseHelper databaseHelper = DatabaseHelper();
+    // Check if the item is already in the wishlist
+    final existingItems = await databaseHelper.getWishlistItems(user.id);
+    for (var item in existingItems) {
+       if (item == candidate) {
+          debugPrint('Item already exists in the wishlist!');
+          return;
+        }
+    
+    
+    }
+    // If the item is not in the wishlist, add it
+    databaseHelper.insertWishlistItem(user.id, candidate);
+    debugPrint('Item added to wishlist!');
 
-}
+    } 
+  }
+  
+
+
+
 
   bool _onUndo(
     int? previousIndex,
@@ -360,8 +386,11 @@ class _ExamplePageState extends State<Example> {
     CardSwiperDirection direction,
   ) {
     debugPrint(
-      'The card $currentIndex was undod from the ${direction.name}',
+      'The card $currentIndex was undid from the ${direction.name}',
     );
+    if (currentIndex != null) {
+      this.currentIndex = currentIndex;
+    }
     return true;
   }
   
@@ -394,7 +423,7 @@ class _ExamplePageState extends State<Example> {
       throw Exception('Failed to load recommendation: ${response.statusCode}');
     }
   } catch (e) {
-    print('Error fetching recommendation: $e');
+    debugPrint('Error fetching recommendation: $e');
     // Handle the error gracefully, e.g., show a friendly error message to the user
   }
 
@@ -428,10 +457,12 @@ class _ExamplePageState extends State<Example> {
       throw Exception('Failed to load random items: ${response.statusCode}');
     }
   } catch (e) {
-    print('Error fetching recommendation: $e');
+    debugPrint('Error fetching recommendation: $e');
     // Handle the error gracefully, e.g., show a friendly error message to the user
   }
 }
+
+
 
 
 }

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:new_app/signup.dart';
 import 'package:new_app/main.dart';
 import 'package:new_app/database_helper.dart';
-import 'package:provider/provider.dart'; // Import Provider for state management
+ // Import Provider for state management
 
 class LoginPage extends StatefulWidget {
   
 
-  LoginPage({ Key? key }) : super(key: key);
+  const LoginPage({ Key? key }) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -29,20 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
-        ),
-      ),
+      
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
@@ -56,17 +43,27 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: <Widget>[
                       FadeInUp(
-                          duration: Duration(milliseconds: 1000),
-                          child: Text(
+                        duration: const Duration(milliseconds: 1200),
+                          child: Center( // Center the image
+                            child: Container(
+                              height: 100, // Adjust the height as needed
+                              width: 200, // Adjust the width as needed
+                              child: Image.asset('assets/logo.png'),
+                            ),
+                          ), // Add this line
+                      ),
+                      FadeInUp(
+                          duration: const Duration(milliseconds: 1000),
+                          child: const Text(
                             "Login",
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       FadeInUp(
-                          duration: Duration(milliseconds: 1200),
+                          duration: const Duration(milliseconds: 1200),
                           child: Text(
                             "Login to your account",
                             style: TextStyle(
@@ -75,28 +72,28 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
                         FadeInUp(
-                            duration: Duration(milliseconds: 1200),
+                            duration: const Duration(milliseconds: 1200),
                             child: makeInput(label: "Email", controller: emailController)),
                         FadeInUp(
-                            duration: Duration(milliseconds: 1300),
+                            duration: const Duration(milliseconds: 1300),
                             child: makeInput(
                                 label: "Password", obscureText: true, controller: passwordController)),
                       ],
                     ),
                   ),
                   FadeInUp(
-                      duration: Duration(milliseconds: 1400),
+                      duration: const Duration(milliseconds: 1400),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Container(
-                          padding: EdgeInsets.only(top: 3, left: 3),
+                          padding: const EdgeInsets.only(top: 3, left: 3),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              border: Border(
+                              border: const Border(
                                 bottom: BorderSide(color: Colors.black),
                                 top: BorderSide(color: Colors.black),
                                 left: BorderSide(color: Colors.black),
@@ -109,21 +106,16 @@ class _LoginPageState extends State<LoginPage> {
                   // Get user input
                   String email = emailController.text;
                   String password = passwordController.text;
-                  print('Entered Email: $email'); // Add this line
+                  debugPrint('Entered Email: $email'); // Add this line
                   print('Entered Password: $password'); // Add this line
                   // Validate user credentials
                   User? user = await databaseHelper.getUser(email);
-                  print('User from database: $user');
-                  print('Entered Password: $password');
-                  print('User Password: ${user?.password}');
-                  print('User id: ${user?.id}');
+                  debugPrint('User from database: $user');
+                  debugPrint('Entered Password: $password');
+                  debugPrint('User Password: ${user?.password}');
+                  debugPrint('User id: ${user?.id}');
                   if (user != null && user.password == password) {
-                    // Navigator.pushReplacementNamed(context, '/example');
-                  //   Navigator.pushReplacementNamed(
-                  //   context,
-                  //   '/example',
-                  //   arguments: user, // Pass the user as arguments
-                  // );
+                   
                   debugPrint('User: $user');
                   Navigator.pushNamed(
                     context,
@@ -141,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                           // setState(() {});
                   }
                           },
-                            color: Color.fromARGB(255, 241, 85, 137),
+                            color: const Color.fromARGB(255, 241, 85, 137),
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50)),
@@ -157,18 +149,18 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       )),
                   FadeInUp(
-                      duration: Duration(milliseconds: 1500),
+                      duration: const Duration(milliseconds: 1500),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("Don't have an account?"),
+                          const Text("Don't have an account?"),
                           TextButton(
                     onPressed: () {Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => SignupPage()));
                           }, 
-                          child :Text(
+                          child :const Text(
                             "Sign up",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 18),
@@ -179,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
               if (errorMessage.isNotEmpty)
                 Text(
                   errorMessage,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                     fontSize: 16,
                   ),
@@ -209,24 +201,24 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         TextField(
           obscureText: obscureText,
           controller: controller, // Add this line to associate the controller
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.shade400)),
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey.shade400)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
       ],

@@ -26,7 +26,7 @@ class ExampleCard extends StatelessWidget {
         color: Colors.grey.withOpacity(0.2),
         spreadRadius: 3,
         blurRadius: 7,
-        offset: Offset(0, 3),
+        offset: const Offset(0, 3),
       ),
     ],
   ),
@@ -42,7 +42,7 @@ class ExampleCard extends StatelessWidget {
         left: 0,
         right: 0,
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -196,7 +196,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
@@ -207,7 +207,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
@@ -228,7 +228,7 @@ class DetailsPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
@@ -268,7 +268,7 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     if (controller != null)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -276,27 +276,27 @@ class DetailsPage extends StatelessWidget {
                         FloatingActionButton(
                           heroTag: 'uniqueTag1',
                           onPressed:(){controller!.swipeLeft(); Navigator.pop(context);},
-                          child: Icon(Icons.close),
-                          backgroundColor: Color.fromARGB(255, 241, 85, 137),
+                          child: const Icon(Icons.close),
+                          backgroundColor: const Color.fromARGB(255, 241, 85, 137),
                           foregroundColor: Colors.white,
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                         ),
                         FloatingActionButton(
                           heroTag: 'uniqueTag2',
                           onPressed:(){controller!.undo(); Navigator.pop(context);
                           },
-                          child: Icon(Icons.rotate_left),
+                          child: const Icon(Icons.rotate_left),
                           backgroundColor: Color.fromARGB(255, 241, 85, 137),
                           foregroundColor: Colors.white,
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                         ),
                         FloatingActionButton(
                           heroTag: 'uniqueTag3',
                           onPressed: (){controller!.swipeRight(); Navigator.pop(context);},
-                          child: Icon(Icons.done),
-                          backgroundColor: Color.fromARGB(255, 241, 85, 137),
+                          child: const Icon(Icons.done),
+                          backgroundColor: const Color.fromARGB(255, 241, 85, 137),
                           foregroundColor: Colors.white,
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                         ),
                       ],
                     ),

@@ -23,6 +23,9 @@ class DatabaseHelper {
       await db.execute(
         'CREATE TABLE wishlist(id INTEGER PRIMARY KEY, userId INTEGER, name TEXT, image TEXT, link TEXT, price TEXT, brand TEXT, FOREIGN KEY(userId) REFERENCES users(id))',
       ); // Create the wishlist table with a userId column
+      await db.execute(
+        'CREATE TABLE preferences(username TEXT PRIMARY KEY, preference1 TEXT, preference2 TEXT, preference3 TEXT, preference4 TEXT)',
+      );
     },
     onUpgrade: (db, oldVersion, newVersion) async {
       if (oldVersion < 2) {
@@ -31,8 +34,14 @@ class DatabaseHelper {
           'ALTER TABLE wishlist ADD COLUMN userId INTEGER',
         );
       }
+      if (oldVersion < 4) {
+        // Perform migration from version 1 to version 2
+        await db.execute(
+        'CREATE TABLE preferences(username TEXT PRIMARY KEY, preference1 TEXT, preference2 TEXT, preference3 TEXT, preference4 TEXT)',
+      );
+      }
     },
-    version: 2, // Update the version number
+    version: 4, // Update the version number
   );
 }
 
@@ -41,6 +50,14 @@ class DatabaseHelper {
     await db.insert(
       'users',
       user.toMapWithoutId(), // Use the toMapWithoutId method to exclude the id
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+  Future<void> insertPref(Preference pref) async {
+    final db = await database;
+    await db.insert(
+      'preferences',
+      pref.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -76,6 +93,20 @@ class DatabaseHelper {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+  Future<Preference?> getPref(String username) async {
+  final db = await database;
+  final List<Map<String, dynamic>> maps = await db.query(
+    'preferences',
+    where: 'username = ?',
+    whereArgs: [username],
+  );
+
+  if (maps.isNotEmpty) {
+    return Preference.fromMap(maps.first);
+  } else {
+    return null;
+  }
+}
 
   // Method to retrieve wishlist items for a specific user
   Future<List<ExampleCandidateModel>> getWishlistItems(int? userId) async {
@@ -84,6 +115,7 @@ class DatabaseHelper {
       'wishlist',
       where: 'userId = ?',
       whereArgs: [userId],
+      orderBy: 'id DESC',
     );
     return List.generate(maps.length, (i) {
       return ExampleCandidateModel(
@@ -126,6 +158,44 @@ class User {
   };
 }
 }
+class Preference {
+  //int id;
+  String username; // Foreign key referencing the User table
+  String preference1;
+  String preference2;
+  String preference3;
+  String preference4;
+
+  Preference({required this.username, required this.preference1, required this.preference2, required this.preference3, required this.preference4});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'username': username,
+      'preference1': preference1,
+      'preference2': preference2,
+      'preference3': preference3,
+      'preference4': preference4,
+    };
+  }
+
+  factory Preference.fromMap(Map<String, dynamic> map) {
+    return Preference(
+      //id: map['id'],
+      username: map['username'],
+      preference1: map['preference1'],
+      preference2: map['preference2'],
+      preference3: map['preference3'],
+      preference4: map['preference4'],
+    );
+  }
+  
+}
+
+
+
+
+
+
 
 
 
