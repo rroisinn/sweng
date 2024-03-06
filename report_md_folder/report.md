@@ -1,4 +1,4 @@
-# <p style="color:deeppink;">Executive Summary / Introduction</p>
+# <span style="color:deeppink;">Executive Summary / Introduction</apan>
 
 Sweng is an innovative mobile application poised to disrupt the fashion retail market by merging the intuitive swipe mechanics popularized by dating apps with a powerful shopping and recommendation platform. Designed with a "Tinder-style" user interface, Sweng offers a fresh take on online clothing shopping, allowing users to quickly swipe through an array of fashion items, swiping right to add them to their wishlist, and left to pass.
 
