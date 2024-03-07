@@ -1,47 +1,33 @@
-# <span style="color:deeppink;">Executive Summary / Introduction</apan>
 
-Sweng is an innovative mobile application poised to disrupt the fashion retail market by merging the intuitive swipe mechanics popularized by dating apps with a powerful shopping and recommendation platform. Designed with a "Tinder-style" user interface, Sweng offers a fresh take on online clothing shopping, allowing users to quickly swipe through an array of fashion items, swiping right to add them to their wishlist, and left to pass.
+<p align="center">
+    <img src="SWENG.png" alt="SWENG">
+</p>
 
-Upon signing up, users are prompted to select their style preferences, which Sweng's algorithm uses to curate a personalized fashion feed. This bespoke experience is further refined with each swipe, as the app learns from the user's choices, continually honing its recommendations. The wishlist serves not just as a collection of favored items, but also as the foundation for a sophisticated recommendation algorithm that suggests new pieces and styles, tailored to the user's tastes.
+## <span style="color:deeppink;">Overview</span>
 
-Sweng's core objective is to streamline the online shopping experience, making it more engaging and personalized. The app's convenience is heightened by direct links to purchase items, simplifying the transition from discovery to acquisition. This feature ensures that users are only a few taps away from owning their next favorite piece of clothing.
+Sweng is an innovative mobile application poised to disrupt the fashion retail market by merging the intuitive swipe mechanics popularised by dating apps with a powerful shopping and recommendation platform. Designed with a "Tinder-style" user interface, Sweng offers a fresh take on online clothing shopping, allowing users to quickly swipe through an array of fashion items, swiping right to add them to their wishlist, and left to pass.
 
-An additional layer of customization is provided at the onset, where users can set preferences for the types of styles they like. Whether they're into streetwear, high fashion, or vintage, Sweng adapts its showcase to match their sartorial leanings, ensuring a highly relevant and customized browsing experience.
+Upon signing up, users are prompted to select their style preferences, which Sweng's algorithm uses to curate a personalised fashion feed. This bespoke experience is further refined with each swipe, as the app learns from the user's choices, continually honing its recommendations. The wishlist serves not just as a collection of favoured items, but also as the foundation for a sophisticated recommendation algorithm that suggests new pieces and styles, tailored to the user's tastes.
 
-In the current e-commerce landscape, Sweng stands out with its unique combination of simplicity, personalization, and direct purchasing links. As users interact with the app, their swiping patterns yield valuable data, enabling Sweng to continuously refine its algorithms, and ensuring that the user's feed remains relevant and engaging. This dynamic approach to online shopping not only fosters a more enjoyable user experience but also drives higher conversion rates for retailers.
+Sweng's core objective is to streamline the online shopping experience, making it more engaging and personalised. The app's convenience is heightened by direct links to purchase items, simplifying the transition from discovery to purchase. This feature ensures that users are only a few taps away from owning their next favourite piece of clothing.
 
-Moving forward, Sweng is positioned to become an essential tool for fashion-forward consumers and a valuable partner for retailers seeking to captivate and convert an engaged audience. Through strategic partnerships, continuous algorithmic refinement, and an unwavering commitment to user experience, Sweng aims to redefine how consumers discover and purchase fashion online.
+In the current e-commerce landscape, Sweng stands out with its unique combination of simplicity, personalization, and direct purchasing links. As users interact with the app, their swiping patterns yield valuable data, enabling Sweng to continuously refine its algorithms, and ensuring that the user's feed remains relevant and engaging. 
 
-## <span style="color:deeppink;">Market Research</span>
+Moving forward, Sweng is positioned to become an essential tool for fashion-forward consumers and a valuable partner for retailers seeking to captivate and convert an engaged audience.Through  continuous algorithmic refinement, and an unwavering commitment to user experience, Sweng aims to redefine how consumers discover and purchase fashion online.
 
-### <span style="color:hotpink;">Industry Analysis</span>
-The fashion industry is an ever-evolving landscape characterized by its fast pace and its susceptibility to consumer trends and global economic conditions. In recent years, the rise of e-commerce has dramatically shifted the dynamics of purchasing behavior, with a significant proportion of consumers opting for the convenience and variety offered by online platforms. The advent of mobile shopping apps has further augmented this trend, with apps like Sweng leading the charge in offering personalized, on-demand fashion retail services.
-
-The growing influence of social media on fashion has created a new cohort of trendsetters and style influencers, shaping consumer preferences and expectations. Brands are increasingly turning to these platforms to market their products, making the social-media-integrated shopping experience offered by apps like Sweng not just innovative, but necessary.
-
-### <span style="color:hotpink;">Target Market Demographics and Psychographics</span>
-Sweng's primary target market consists of Millennials and Gen Z consumers aged between 18 and 35. This demographic is tech-savvy, highly engaged with social media, and values convenience and personalization in their shopping experience. They prefer platforms that offer a seamless blend of entertainment and shopping, a niche Sweng fills with its swipe-to-shop feature.
-
-### <span style="color:hotpink;">Competitive Analysis</span>
-Sweng operates in a highly competitive market, with direct competition coming from established e-commerce giants as well as niche fashion apps. Platforms like Amazon and ASOS offer vast selections and convenience but lack the personalized shopping experience Sweng provides. On the other hand, subscription-based services like Stitch Fix provide personalization but require a commitment that casual shoppers may shy away from.
-
-Sweng differentiates itself with its combination of a low-commitment, personalized browsing experience and its unique swipe interface that leverages the habitual behavior modeled by dating apps. 
-
-To maintain a competitive edge, Sweng must continue to innovate, ensuring that its algorithm stays ahead of the curve in predicting and adapting to user preferences. Additionally, Sweng can capitalize on the data-driven insights it garners to assist brands in understanding emerging trends, thereby positioning itself as a valuable partner to retailers.
-
-In summary, Sweng is positioned at the intersection of technology and fashion, catering to a demographic that values the convergence of both.
+![SWENG](design_1.png)
 
 ## <span style="color:deeppink;">Concept Development</span>
-The development of Sweng began with a clear vision: to simplify and enhance the online shopping experience using the familiar mechanics of dating apps. In the digital age, where consumer attention spans are short and the desire for instant gratification is high, Sweng was conceptualized to marry the convenience of e-commerce with the addictive, fun element of swiping through options.
+The development of Sweng aimed to simplify and enhance the online shopping experience using the familiar mechanics of dating apps. In an era where consumer attention spans are short and the desire for instant gratification is high, the goal of Sweng is to combine the convenience of online shopping with the addictive, fun element of swiping through options.
 
 ### <span style="color:hotpink;">Ideation Phase</span>
-The ideation phase revolved around the central question: How can we make online shopping as easy and enjoyable as swiping right? The answer lay in the development of an application that leveraged the intuitive swipe functionality to allow users to quickly navigate through clothing options. A 'right swipe' would indicate interest and save the item to a wishlist, while a 'left swipe' would dismiss it, thus offering a streamlined, binary decision-making process that could capture the fleeting attention of the modern consumer.
+The ideation phase revolved around the central question: How do we create an app that incorporates continuous recommendation and user-interactive swiping? The answer lay in the development of an application that utilised a swipe functionality to allow users to quickly navigate through clothing options. A 'right swipe' would indicate interest and save the item to a wishlist, while a 'left swipe' would dismiss it, thus offering a streamlined, binary decision-making process.
 
 ### <span style="color:hotpink;">User-Centric Design</span>
-The design phase placed heavy emphasis on user engagement. Sweng’s interface was crafted to be minimalist yet functional, ensuring that the focus remained on the fashion items themselves. This design philosophy extended to the app’s onboarding process, which was made straightforward and inviting. New users would be greeted by a series of style preference choices, which immediately immerse them in the personalization experience that Sweng offers.
+The design phase placed heavy emphasis on user engagement. Sweng’s interface was crafted to be minimalist yet functional, ensuring that the focus remained on the fashion items themselves. This design philosophy extended to the app’s signup process, which was made straightforward and inviting. New users would be greeted by a series of style preference choices, which immediately immerse them in the personalisation experience that Sweng offers. 
 
 ## <span style="color:deeppink;">Design Process</span>
-The design process of Sweng, a sophisticated fashion shopping app, was centred around creating a seamless, user-friendly experience, leveraging advanced technologies, and integrating a set of rich features. Here’s how the app was designed from the ground up:
+The design process of Sweng, a sophisticated fashion shopping app, was centred around creating a seamless, user-friendly experience that offers a set of rich features. Here’s how the app was designed from the ground up
 
 ### <span style="color:hotpink;">Technical Architecture</span>
 The Technical Architecture of our app is designed to separate concerns into distinct layers and use appropriate technologies for each, this allows for modularity, scalability and maintainability. The architecture is designed to facilitate efficient data flow, responsive user experience and communication between components.
@@ -54,13 +40,15 @@ The Technical Architecture of our app is designed to separate concerns into dist
 
 These layers of the Technical Architecture work together to enable the functionality of SWENG.
 
+
 ![Technical architecture](SWENG_tech_arch.png)
 
-### <span style="color:hotpink;">Recommendation Algorithm Development (Peace)</span>
-A pivotal aspect of Sweng's concept development was the creation of a sophisticated algorithm capable of learning and evolving with each user interaction. The app’s engine was designed to analyze swipes, wishlist additions, and purchase history to refine and personalize the product feed. This continuous learning process ensures that users remain engaged with the content that is most relevant to them, increasing the likelihood of purchase conversions.
+### <span style="color:hotpink;">Recommendation Algorithm Development</span>
+A pivotal aspect of Sweng's concept development was the creation of a sophisticated algorithm capable of learning and evolving with each user interaction. The app’s engine was designed to analyse swipes, wishlist additions, and purchase history to refine and personalise the product feed. This continuous learning process ensures that users remain engaged with the content that is most relevant to them, increasing the likelihood of purchase conversions.
 
-The heart of Sweng lies in its recommendation algorithm. Designed to mimic the intuitive and engaging experience of dating apps, Sweng's algorithm uses machine learning to analyse user interactions—swipes, likes, wishlist additions—and tailor the shopping experience to individual tastes. 
-When building the recommendation Algorithm we researched various machine learning libraries in Python that could be used for building recommendation systems. We also researched the different types of recommendation systems like content-based,collaborative-filtering and hybrid systems. The main functionality of our recommendation algorithm was to be given information about the items that a user likes and then recommend something similar, this was done using a Python library called scikit-learn, which used things like term frequency and cosine similarity of terms used to describe an item to find other items that were similar to it, it then returned the recommended item in JSON format.
+The heart of Sweng lies in its custom-built recommendation algorithm. Designed to mimic the intuitive and engaging experience of dating apps, Sweng's algorithm uses machine learning to analyse user interactions—swipes, likes, wishlist additions—and tailor the shopping experience to individual tastes. 
+When building the recommendation algorithm we researched various machine learning libraries in Python that could be used for building recommendation systems. Also researched the different types of recommendation systems like content-based,collaborative-filtering and hybrid systems. The main functionality of our recommendation algorithm was to be given information about the items that a user likes and then recommend something similar, this was done using a Python library called scikit-learn, which used things like term frequency and cosine similarity of terms used to describe an item to find other items that were similar to it, it then returned the recommended item in JSON format.
+
 
 
     from sklearn.feature_extraction.text import TfidfVectorizer #TF-> term frequency used for calculating similarities in texts
@@ -78,7 +66,7 @@ When building the recommendation Algorithm we researched various machine learnin
 
 By continuously learning from user behaviour, the algorithm refines its suggestions, making each user's feed more personalized over time.
 
-### <span style="color:hotpink;">Server and Backend (Peace)</span>
+### <span style="color:hotpink;">Server and Backend</span>
 The backend of Sweng is hosted on PythonAnywhere, a cloud service platform that allows for easy Python web app hosting. This choice was made for its simplicity and effectiveness in deploying Python applications quickly. The server-side logic is implemented in Python, taking advantage of its rich ecosystem, including libraries for machine learning, data processing, and API development.
 The logic behind the app is hosted on the server(backend) and it serves API endpoints for the frontend to interact with.
 
@@ -86,16 +74,17 @@ The logic behind the app is hosted on the server(backend) and it serves API endp
     https://sweng1.pythonanywhere.com/recommend/[product data]
     https://sweng1.pythonanywhere.com/random
 
-### <span style="color:hotpink;">Data Collection (Peace)</span>
+### <span style="color:hotpink;">Data Collection</span>
 In the process of developing our app, data collection played a pivotal role in providing relevant content for the execution of our fashion-related app. 
-When collecting fashion-related data for the app we chose to use Python due to its various libraries for web scraping, such as Beautiful Soup, scrapy, selenium and requests. Initially, we tried using Beautiful Soup and Selenium to extract the data but unfortunately, we were met with blockers that prevented access to the data that was needed. Eventually, we used the requests-html library which allowed us to simulate HTTP requests, and parse the content to extract what was needed.
+When collecting fashion-related data for the app we chose to use Python due to its various libraries for web scraping, such as Beautiful Soup, scrapy, selenium and requests. Initially,we  tried using BeautifulSoup and Selenium to extract the data but unfortunately, we were met with blockers that prevented access to the data that was needed. Eventually,we used the requests-html library which allowed us to simulate HTTP requests, and parse the content to extract what was needed.
+
 
     response = requests.get('https://www.asos.com/api/product/search/v2/categories/27108', headers=headers, params=params)
     result_json = response.json() #json object containing webscraped data
     
 We decided it was best to utilize web scraping to extract fashion-related data from an e-commerce website(ASOS). The data extraction process was executed on our server, the data was then processed and stored in a database on the server. Upon extraction the data was filtered and processed to ensure it was suitable for integration with our app which was built using Flutter, this integration ensured that our app could dynamically access and display up-to-date fashion content. 
 
-### <span style="color:hotpink;">Database Management with MySQL (Eimear)</span>
+### <span style="color:hotpink;">Database Management with MySQL</span>
 Sweng’s data storage solution utilizes MySQL, a robust and reliable relational database management system. MySQL stores user profiles, product information, wishlist data, and interaction logs. This choice supports complex queries and scales well with the growing amount of data, crucial for the app’s learning algorithms and for providing a fast, responsive user experience. 
 
 The database utilized in the system is supported by the database_helper.dart file. This file is comprised of classes and related functions that provide a consistent and robust structure for SQL fetch and insert statements. Each table in the database is initialized and has its columns defined in the initDatabase() function. This method is called in the main.dart file, and other relevant dart files, to facilitate insertion and fetching according to the needs of the application i.e. in terms of signups/preferences. In initDatabase() each table is created using a standard ‘CREATE’ statement, with relevant keys being connected using FOREIGN KEY where necessary e.g. between the wishlist and users tables. 
@@ -105,16 +94,25 @@ With Flutter, migrations through database versions must be performed each time a
 There are INSERT methods for each table along with User and Preference classes that are used as objects when adding to the DB. In turn, there are get methods for users, preferences and the wishlist that query the database based on IDs and usernames. 
 There is added security through the use of prepared SQL statements. They are structured using ‘?’ fields rather than inserting straight from the parameter of the function to the database. This avoids the risk of a ‘DROP TABLE’ statement from disrupting the tables in the DB. 
 
-### <span style="color:hotpink;">Front End Development with Flutter (Yaz & Roisin)</span>
-The frontend of Sweng was developed using Flutter, Google's UI toolkit for crafting natively compiled applications for mobile, web, and desktop from a single codebase. Flutter was chosen for its fast development cycle, expressive and flexible UI, and native performance. It allows Sweng to offer a smooth, aesthetically pleasing user experience across iOS and Android platforms.
+### <span style="text-decoration: underline; color:hotpink;">Level 0 Data Flow Diagram</span>
+![Data Flow Level 0](SWENG_level0_data_flow.png)
 
-Flutter supports development in Dart, a client-optimized language for fast apps on any platform. Dart’s features—such as hot reload, a rich standard library, and strong UI-oriented features—make it an ideal choice for Sweng’s development.
+### <span style="text-decoration: underline; color:hotpink;">Level 1 Data Flow Diagram</span>
+![Data Flow Level 1](SWENG_level1_data_flow.png)
+
+### <span style="color:hotpink;">Front End Development with Flutter</span>
+The frontend of Sweng was developed using Flutter, Google's UI toolkit for crafting natively compiled applications for mobile, web, and desktop from a single codebase. It allows Sweng to offer a smooth, aesthetically pleasing user experience across iOS and Android platforms.
+
+Flutter supports development in Dart, a client-optimised language for fast apps on any platform. Dart’s features—such as hot reload, a rich standard library, and strong UI-oriented features—make it an ideal choice for Sweng’s development.
+
 
 #### <span style="color:lightpink;">Key Features</span>
 1. **Interactive Card Swiping**: Users can swipe left, right or down to indicate their preference for candidate items.
 2. **Dynamic Data Loading**: Candidate items are fetched dynamically from a remote API, on our server, ensuring fresh content for users.
 3. **User Engagement**: Users can interact with candidate items by tapping on them to view details or add them to their wishlist.
 4. **Local Database**: User preferences and wishlist items are stored locally, providing seamless access across sessions.
+
+![Sequence Diagram 2](SWENG_sequence_2.png)
 
 #### <span style="color:lightpink;">Application Flow</span>
 The Flutter application offers a seamless user experience with the following flow:
@@ -418,7 +416,7 @@ This page Implements the UI for displaying the individual candidate cards. It us
        required this.brand,
      });
 
-This class represents a model for candidate items. It has five properties: name, image, link, price, and brand, all of which are required. The constructor ExampleCandidateModel initializes these properties when an object of this class is created. This allows us to store information about each item in an object that can then be stored in a list. These objects are then built into individual cards in the example_canidatemodel.dart page.
+This class represents a model for candidate items. It has five properties: name, image, link, price, and brand, all of which are required. The constructor ExampleCandidateModel initializes these properties when an object of this class is created. This allows us to store information about each item in an object that can then be stored in a list. These objects are then built into individual cards in the example_candidatemodel.dart page.
 
     @override
      Widget build(BuildContext context) {
@@ -758,48 +756,26 @@ The UI is updated using setState after loading the items.
 
 The build method returns a Scaffold widget with an app bar and a body. If the wishlist is empty, it displays a message indicating that the wishlist is empty. Otherwise, it displays a ListView.builder to render the wishlist items. 
 
-### <span style="color:hotpink;">Design Styles and UX (Yaz and Roisin)</span>
+### <span style="color:hotpink;">Design Styles and UX</span>
 The UI design of Sweng adheres to Material Design principles, ensuring a modern, clean, and user-friendly interface. The app's layout is intuitive, with a focus on showcasing products through high-quality images and minimal text, creating an engaging browsing experience.
 
 ![design1](design_1.png)
 ![design2](design_2.png)
 ![design3](design_3.png)
 ![design4](design_4.png)
+ 
 
-### <span style="color:hotpink;">User Preferences and Wishlist (Eimear & Yaz)</span>
-Upon signup, users are prompted to select their fashion preferences, which the app uses to curate the initial product feed. This immediate customisation enhances user engagement from the first use. Users are instructed to select four style options e.g. jeans, dresses etc. These are then inserted into the preferences table in the database and are referenced using the username. When the main screen of the application is presented to the user, the first few item cards adhere to the preferences that they have selected as a starting base point for recommendations. 
-The wishlist feature allows users to save items they love, influencing the recommendation algorithm and simplifying future purchases. When a user swipes right on an item, it is added to their wishlist and their choice is fed into the recommendation algorithm as it tailors the presented item cards to the user's taste. 
+## <span style="color:deeppink;">Lessons Learned</span>
 
-## <span style="color:deeppink;">Lessons Learned??</span>
+Throughout this software project, we've gained valuable insights and lessons that have contributed to our growth as developers and as a team:
 
-### <span style="color:hotpink;">Algorithmic Tailoring and Personalization:</span>
+1. **Flutter and Dart**: As it was our first time developing an app we learned lots during the process. We delved into Flutter and Dart, Google's powerful toolkit for building cross-platform applications. Through hands-on experience, we learned how to effectively employ Flutter to create a visually appealing and responsive frontend for our application. From our problems and solutions, we learned the advantages and disadvantages of developing using flutter. 
 
-Detailing the evolution of the recommendation algorithm and the challenges in creating a system that accurately adapts to individual style preferences.
+2. **Backend Development**: Backend development taught us the importance of building robust and scalable server-side components to handle data processing, storage, and retrieval efficiently. We gained proficiency in designing and implementing APIs to facilitate communication between the frontend and backend. 
 
+4. **Effective Communication**: Clear and effective communication was crucial to our project's success. We made sure that team members were aligned on project goals, tasks, and timelines. Regular meetings and updates helped us stay on track and address any issues promptly.
 
-### <span style="color:hotpink;">User Engagement and Retention:</span>
+6. **Workload Delegation**: Delegating tasks effectively allowed us to distribute workload evenly and capitalise on individual strengths. By assigning tasks based on skill sets and availability, we optimised productivity and ensured timely completion of project milestones.
 
-Analyzing which app features most effectively drove user engagement and how user feedback was incorporated to improve retention rates.
+Overall, our journey through this software project has equipped us with a comprehensive set of skills and experiences, preparing us for future endeavours in software development.
 
-### <span style="color:hotpink;">Design and Interface Considerations:</span>
-
-Reflecting on the importance of intuitive design for user adoption, and the impact of Sweng’s "Tinder-style" interface on the overall shopping experience.
-
-
-## <span style="color:deeppink;">Diagrams</span>
-### <span style="text-decoration: underline; color:hotpink;">Use-Case</span>
-![Use-case diagram](SWENG_use_case.png)
-
-### <span style="text-decoration: underline; color:hotpink;">Level 0 Data Flow Diagram</span>
-![Data Flow Level 0](SWENG_level0_data_flow.png)
-
-### <span style="text-decoration: underline; color:hotpink;">Level 1 Data Flow Diagram</span>
-![Data Flow Level 1](SWENG_level1_data_flow.png)
-
-### <span style="text-decoration: underline; color:hotpink;">Finite State Machine</span>
-![Finite State Machine](SWENG_finite_state.png)
-
-### <span style="text-decoration: underline; color:hotpink;">Sequence Diagrams</span>
-![Sequence Diagram 1](SWENG_sequence_1.png)
-
-![Sequence Diagram 2](SWENG_sequence_2.png)
